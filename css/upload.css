@@ -1,0 +1,33 @@
+table#pdf_table {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        border: 1px solid #ccc;
+        margin: 0px 0px 10px;
+    }
+    table#pdf_table thead {
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        background: #9070e7;
+    }
+    table#pdf_table thead th {
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        color: #fff;
+    }
+    table#pdf_table tbody th {
+        width: 200px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        background: #f7f1fc;
+    }
+    table#pdf_table td {
+        width: 150px;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        font-size: small;
+    }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+</body>
+<script src="https://www.gstatic.com/assistant/interactivecanvas/api/interactive_canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"></script>
+<script>
+    'use strict';
+
+    /**
+     * This class is used as a wrapper for Google Assistant Canvas Action class
+     * along with its callbacks.
+     */
+
+    /**
+     * Copyright 2020 Google LLC
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *    http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+
+    /**
+     * This class is used as a wrapper for Google Assistant Canvas Action class
+     * along with its callbacks.
+     */
+    class Action {
+        /**
+         * @param {*} scene which serves as a container of all visual elements
+         */
+        constructor(scene) {
+            this.canvas = window.interactiveCanvas;
+            this.scene = scene;
+            this.commands = {
+                WELCOME: (data) => {
+                    var form = document.createElement("form");
+                    var input = document.createElement("input");
+
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/storage/download");
+
+                    input.setAttribute("type", "hidden");
+                    input.setAttribute("name", "pdfName");
+                    input.setAttribute("value", data.pdfName.resolved);
+
+
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                },
+            };
+        }
+
+        /**
+         * Register all callbacks used by Interactive Canvas
+         * executed during scene creation time.
+         *
+         */
+        setCallbacks() {
+            // declare interactive canvas callbacks
+            const callbacks = {
+                onUpdate: (data) => {
+                    try {
+                        this.commands[data[0].command.toUpperCase()](data[0]);
+                    } catch (e) {
+                        // do nothing, when no command is sent or found
+                    }
+                },
+            };
+            callbacks.onUpdate.bind(this);
+            // called by the Interactive Canvas web app once web app has loaded to
+            // register callbacks
+            this.canvas.ready(callbacks);
+        }
+    }
+
+
+    /* eslint-disable no-invalid-this */
+    window.addEventListener('load', () => {
+        window.scene = new Scene();
+
+        // Set Google Assistant Canvas Action at scene level
+        window.scene.action = new Action(scene);
+        // Call setCallbacks to register interactive canvas
+        window.scene.action.setCallbacks();
+    });
+
+    class Scene {
+        constructor() {
+        }
+    }
+</script>
+</html>

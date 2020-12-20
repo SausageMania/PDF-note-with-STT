@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3a0b2988-5a07-4b5a-8c69-ef5cef04d9cb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JupyterTrust" id="71e2297a-374b-48d7-8d36-25c6172179b5" />
+  <component name="ProjectId" id="1iiKsXIGoORgv009fJsORxQ9XgY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.4" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.12.67" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../appengine" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PyCharm 2020.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\joshu\Desktop\Capstone Project\appengine\routes\pdf-lib" />
+      <recent name="C:\Users\joshu\Desktop\Capstone Project\appengine\routes" />
+      <recent name="C:\Users\joshu\Desktop\Capstone Project\appengine\views" />
+      <recent name="C:\Users\joshu\Desktop\Capstone Project\appengine" />
+      <recent name="C:\Users\joshu\Desktop\Nodejs 예제\routes" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a0b2988-5a07-4b5a-8c69-ef5cef04d9cb" name="Default Changelist" comment="" />
+      <created>1602385179338</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602385179338</updated>
+      <workItem from="1602385180398" duration="3659000" />
+      <workItem from="1602654924498" duration="7502000" />
+      <workItem from="1602678364983" duration="86000" />
+      <workItem from="1602678617386" duration="7054000" />
+      <workItem from="1602728058186" duration="10238000" />
+      <workItem from="1603870191934" duration="1799000" />
+      <workItem from="1605093346141" duration="826000" />
+      <workItem from="1605094183580" duration="16000" />
+      <workItem from="1605098856491" duration="986000" />
+      <workItem from="1605325815930" duration="9382000" />
+      <workItem from="1605365040648" duration="4614000" />
+      <workItem from="1605622628126" duration="611000" />
+      <workItem from="1605683656405" duration="13250000" />
+      <workItem from="1605758547129" duration="427000" />
+      <workItem from="1605933999915" duration="10704000" />
+      <workItem from="1606031312412" duration="3721000" />
+      <workItem from="1606138588171" duration="2185000" />
+      <workItem from="1606215774259" duration="4355000" />
+      <workItem from="1606368320324" duration="2009000" />
+      <workItem from="1606450047652" duration="3178000" />
+      <workItem from="1606484182920" duration="7744000" />
+      <workItem from="1606533972802" duration="4775000" />
+      <workItem from="1606668116031" duration="5824000" />
+      <workItem from="1606708732464" duration="37942000" />
+      <workItem from="1606883140107" duration="25543000" />
+      <workItem from="1606924314143" duration="412000" />
+      <workItem from="1606963741181" duration="17395000" />
+      <workItem from="1607022742131" duration="1700000" />
+      <workItem from="1607054207855" duration="4202000" />
+      <workItem from="1607155565794" duration="19631000" />
+      <workItem from="1607226437134" duration="24406000" />
+      <workItem from="1607321244615" duration="37149000" />
+      <workItem from="1607398556288" duration="5379000" />
+      <workItem from="1607423661137" duration="18707000" />
+      <workItem from="1607483199518" duration="10146000" />
+      <workItem from="1607585693776" duration="3857000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="969" y="488" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606918932955">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="969" y="488" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400/-1920.261.1920.1040@0.0.2560.1400" timestamp="1606918932955" />
+    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607339632204">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400/-1920.261.1920.1040@0.0.2560.1400" timestamp="1607339632204" />
+    <state x="1193" y="531" key="FileChooserDialogImpl" timestamp="1606713931677">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1193" y="531" key="FileChooserDialogImpl/0.0.2560.1400/-1920.261.1920.1040@0.0.2560.1400" timestamp="1606713931677" />
+    <state x="255" y="225" width="1550" height="689" key="dock-window-1" timestamp="1602732621693">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="255" y="225" width="1550" height="689" key="dock-window-1/0.0.2560.1400/-1920.261.1920.1040@-1920.261.1920.1040" timestamp="1602732621693" />
+    <state x="891" y="339" width="779" height="722" key="find.popup" timestamp="1607344086611">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1252" y="513" width="584" height="536" key="find.popup/0.0.2560.1400/-1920.261.1920.1040@-1920.261.1920.1040" timestamp="1602659948377" />
+    <state x="891" y="339" width="779" height="722" key="find.popup/0.0.2560.1400/-1920.261.1920.1040@0.0.2560.1400" timestamp="1607344086611" />
+    <state x="1495" y="528" width="672" height="678" key="search.everywhere.popup" timestamp="1607250697667">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1495" y="528" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/-1920.261.1920.1040@0.0.2560.1400" timestamp="1607250697667" />
+  </component>
+</project>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%=pdfName%></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous"/>
+</head>
+<body>
+
+<div>
+    <div class="top-bar" id="top-bar">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <div id="mySidenav" class="sidenav" style="overflow-y:scroll;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+
+        <button class="btn" id="prev-page">
+            <span class="fas fa-arrow-circle-left"></span> 이전 페이지
+        </button>
+        <button class="btn" id="next-page">
+            다음 페이지 <span class="fas fa-arrow-circle-right"></span>
+        </button>
+        <span class="page-info">
+        Page <span id="page-num"></span> of <span id="page-count"></span>
+        </span>
+        <br>
+        <button class="btn" id="enlarge-page">
+            <span class="fas fa-search-plus"></span>
+        </button>
+
+        <button class="btn" id="reduce-page">
+            <span class="fas fa-search-minus"></span>
+        </button>
+        <form id="form_memo" method="POST" action="/storage/memo">
+        </form>
+        <form id="form_select" method="POST" action="/storage/select">
+        </form>
+        <form id="form_hide" method="POST" action="/storage/hide">
+        </form>
+        <!--
+                <form id="test" method="POST" action="/storage/memo">
+                    <input type="button" value="제출" onclick="test2()">
+                </form>
+        -->
+    </div>
+
+
+    <div class="main-scene">
+        <canvas id="pdf-render"></canvas>
+    </div>
+
+</div>
+</body>
+<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<script src="https://www.gstatic.com/assistant/interactivecanvas/api/interactive_canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.7/pixi.min.js"></script>
+<script>
+    var screen_width = screen.width;
+    var screen_height = screen.height;
+    var edit_width = 0.5, edit_height = 0.5;
+
+    var pdf_render = document.getElementById("pdf-render");
+    var positionX = (pdf_render.getBoundingClientRect().width /2).toFixed(3),
+        positionY = (pdf_render.getBoundingClientRect().height /2).toFixed(3);
+    var divX = pdf_render.offsetLeft;
+    var divY = pdf_render.offsetTop;
+
+    <%include ../routes/pdf_viewer/pdf_viewer.js%>
+
+    var pdfName = document.createElement("input");
+    pdfName.setAttribute("type", "hidden");
+    pdfName.setAttribute("value", "<%=pdfName%>");
+    pdfName.setAttribute("name", "pdfName");
+
+    var posX = document.createElement("input");
+    var posY = document.createElement("input");
+    var page_num = document.createElement("input");
+
+    page_num.setAttribute("type", "hidden");
+    page_num.setAttribute("name", "pageNum");
+    page_num.setAttribute("value", 1);
+
+    posX.setAttribute("type", "hidden");
+    posX.setAttribute("name", "posX");
+    posX.setAttribute("value", 0.5);
+
+    posY.setAttribute("type", "hidden");
+    posY.setAttribute("name", "posY");
+    posY.setAttribute("value", 0.5);
+
+    var tmp = "<%=memo_list%>";
+    var memo_list = tmp.split(",");
+    var sidenav = document.getElementById("mySidenav");
+    for(var i = 0; i < memo_list.length; i++){
+        var a_tag = document.createElement("a");
+        memo_list[i] = decodeURIComponent(atob(memo_list[i]));
+        if(memo_list[i] != "")
+            a_tag.innerText = (i+1) + ". " + memo_list[i];
+        sidenav.appendChild(a_tag);
+    }
+
+
+    /*
+        var title = document.createElement("input");
+        var memo = document.createElement("input");
+        var page = document.createElement("input");
+        var form = document.getElementById("test");
+        var posX = document.createElement("input");
+        var posY = document.createElement("input");
+
+        title.setAttribute("type", "text");
+        title.setAttribute("name", "title");
+        title.setAttribute("id", "title");
+
+        memo.setAttribute("type", "text");
+        memo.setAttribute("name", "memo");
+        memo.setAttribute("id", "memo");
+
+        page.setAttribute("type", "text");
+        page.setAttribute("name", "page");
+
+        posX.setAttribute("type", "text");
+        posX.setAttribute("name", "posX");
+        posX.setAttribute("value", 0.5);
+
+        posY.setAttribute("type", "text");
+        posY.setAttribute("name", "posY");
+        posY.setAttribute("value", 0.5);
+
+        form.appendChild(pdfName);
+        form.appendChild(title);
+        form.appendChild(memo);
+        form.appendChild(page);
+
+        form.appendChild(posX);
+        form.appendChild(posY);
+
+
+
+        function test2(){
+            var title = document.getElementById("title").value;
+            var memo = document.getElementById("memo").value;
+
+
+            document.getElementById("title").value = btoa(encodeURIComponent(title));
+            document.getElementById("memo").value = btoa(encodeURIComponent(memo));
+            form.submit();
+        }
+    */
+
+    pdf_render.addEventListener('touchstart', function(e){
+        var startX = e.changedTouches[0].pageX;
+        var startY = e.changedTouches[0].pageY;
+        positionX = startX - divX;
+        positionY = startY - divY;
+
+        positionX = positionX > 0 ? positionX : 0;
+        positionY = positionY > 0 ? positionY : 0;
+
+        edit_height = (positionY / pdf_height).toFixed(3);
+        edit_width =  (positionX / pdf_width).toFixed(3);
+
+        posX.value = edit_width;
+        posY.value = edit_height;
+        console.log(posX.value + " " + posY.value);
+    }, false);
+
+    'use strict';
+    var sidenav_open = false;
+    <% include ../routes/command/memo_select.js%>
+    <% include ../routes/command/save_memo.js%>
+    <% include ../routes/command/hide_memo.js%>
+
+    class Action {
+        /**
+         * @param {*} scene which serves as a container of all visual elements
+         */
+        constructor(scene) {
+            this.canvas = window.interactiveCanvas;
+            this.scene = scene;
+
+            this.canvas.getHeaderHeightPx().then((headerHeight)=>{
+                document.body.style.paddingTop = headerHeight + "px";
+                document.getElementById("mySidenav").style.top = headerHeight + "px";
+            });
+
+            this.commands = {
+                WELCOME: (data) => {
+                    //data.color
+                    console.log("welcome");
+                },
+                DRAWLINE: (data) => {
+                    //data.color
+                    console.log("highlight");
+                },
+                DRAWSHAPE: (data) => {
+                    //data.color
+                    //data.shape
+                    console.log("drawshape");
+                },
+                HIGHLIGHT: (data) => {
+                    //data.color
+                    console.log("drawshape");
+                },
+                MEMOSELECT: (data) => {
+                    memo_select(data.number);
+                    //data.number
+                },
+                HIDEMEMO: (data) => {
+                    hide_memo();
+                },
+                SHOWMEMOLIST: (data) => {
+                    if(sidenav_open==false){
+                        openNav();
+                        sidenav_open = true;
+                    }
+                },
+                HIDEMEMOLIST: (data) => {
+                    if(sidenav_open==true){
+                        closeNav();
+                        sidenav_open = false;
+                    }
+                },
+                SAVEMEMO: (data) => {
+                    save_memo(data.title, data.memo);
+                },
+                STILL : (data) => {
+
+                }
+            };
+        }
+
+        /**
+         * Register all callbacks used by Interactive Canvas
+         * executed during scene creation time.
+         *
+         */
+        setCallbacks() {
+            // declare interactive canvas callbacks
+            const callbacks = {
+                onUpdate: (data) => {
+                    try {
+                        this.commands[data[0].command.toUpperCase()](data[0]);
+                    } catch (e) {
+                        // do nothing, when no command is sent or found
+                    }
+                },
+            };
+            callbacks.onUpdate.bind(this);
+            // called by the Interactive Canvas web app once web app has loaded to
+            // register callbacks
+            this.canvas.ready(callbacks);
+        }
+    }
+
+
+    /* eslint-disable no-invalid-this */
+    window.addEventListener('load', () => {
+        window.scene = new Scene();
+
+        // Set Google Assistant Canvas Action at scene level
+        window.scene.action = new Action(scene);
+        // Call setCallbacks to register interactive canvas
+        window.scene.action.setCallbacks();
+    });
+
+    class Scene {
+        constructor() {
+        }
+    }
+
+</script>
+
+<style>
+    <% include ../css/download.css%>
+</style>
+</html>

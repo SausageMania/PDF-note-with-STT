@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= title%></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous"/>
+</head>
+<body>
+
+<form id="form" action="/storage/make_file" method="POST" enctype="multipart/form-data">
+    <input type="file" name="pdf" id="pdf_file" value="파일 업로드" accept="application/pdf">
+    <input type="submit">
+</form>
+<form id="form_upload" action="/storage/upload" method="POST">
+    <input type="text" placeholder="찾고싶은 pdf이름을 입력하세요." name="search_pdf" style="width:200px">
+    <i style="cursor:pointer" class="fas fa-search" onclick="search()"></i>
+</form>
+
+<!--
+<form action="/storage/memo" method="POST" id="test_form">
+    <input type="text" placeholder="text 저장 테스트" name="base64" id="base64">
+    <input type="button" onclick="test()" value="storage에 base64로 저장">
+</form>
+
+
+<form action="/storage/test" method="POST" id="test_form">
+    <input type="submit">
+</form>
+-->
+
+<table id="pdf_table">
+    <thead>
+    <tr>
+        <th scope="cols">PDF 제목</th>
+        <th scope="cols">생성날짜</th>
+        <th scope="cols">수정날짜</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% for (var i = 0;i < pdflist.length;i++){ %>
+    <tr>
+        <th scope="row" onclick="link_to_pdf('<%=pdflist[i]%>');"><%= pdflist[i] %></th>
+        <td><%=created_list[i]%></td>
+        <td><%=updated_list[i]%></td>
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+
+</body>
+<style>
+    <% include ../css/upload.css%>
+</style>
+<script>
+    function test(){
+        var base64 = document.getElementById("base64").value;
+        var form = document.getElementById("test_form");
+        base64 = btoa(encodeURIComponent(base64));
+        document.getElementById("base64").value = base64;
+        form.submit();
+    }
+
+    function search(){
+        var form_upload = document.getElementById("form_upload");
+        form_upload.submit();
+    }
+
+    function link_to_pdf(pdf_name){
+        var encode = encodeURI(encodeURIComponent(pdf_name));
+        window.location.href = "https://assistant.google.com/services/invoke/uid/00000072178b83a3?intent=welcome&hl=ko&param.pdfName=" + encode;
+
+        /*
+        var form = document.createElement("form");
+        var input = document.createElement("input");
+
+        form.setAttribute("method", "GET");
+        form.setAttribute("action", "/storage/download");
+
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "pdfName");
+        input.setAttribute("value", pdf_name);
+
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+        */
+    }
+</script>
+</html>
+

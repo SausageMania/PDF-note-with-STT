@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Test & MySite</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table class="pdf_table">
+    <thead>
+    <tr>
+        <th scope="cols">PDF 제목</th>
+        <th scope="cols">생성날짜</th>
+        <th scope="cols">수정날짜</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% for (var i = 0;i < pdflist.length;i++){ %>
+        <tr>
+            <th scope="row"><%= pdflist[i] %></th>
+            <td><%=created_list[i]%></td>
+            <td><%=updated_list[i]%></td>
+        </tr>
+    <% } %>
+    </tbody>
+
+</table>
+</body>
+<style>
+    table.pdf_table {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        border: 1px solid #ccc;
+        margin: 20px 10px;
+    }
+    table.pdf_table thead {
+        border-right: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        background: #9070e7;
+    }
+    table.pdf_table thead th {
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        color: #fff;
+    }
+    table.pdf_table tbody th {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        background: #f7f1fc;
+    }
+    table.pdf_table td {
+        width: 200px;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div id="div">
+
+</div>
+
+</body>
+<script>
+    console.log("<%=base64%>");
+    var decoded_text = decodeURIComponent(atob("<%=base64%>"));
+    var div = document.getElementById("div");
+    div.innerText = decoded_text;
+</script>
+</html>
